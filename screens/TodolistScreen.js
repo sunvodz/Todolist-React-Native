@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList, Alert } from "react-native";
 import Topic from "../components/Topic";
 import TodoItem from "../components/TodoItem";
 import AddTodo from "../components/AddTodo";
@@ -17,15 +17,22 @@ export default function TodolistScreen() {
   };
 
   const submitHandler = text => {
-    setTodos(prevTodos => {
-      return [{ text: text, key: Math.random().toString() }, ...prevTodos];
-    });
+    if (text.length > 2) {
+      setTodos(prevTodos => {
+        return [{ text: text, key: Math.random().toString() }, ...prevTodos];
+      });
+    } else {
+      Alert.alert("Error!", "Todos must be over 2 chars long", [
+        { text: "Understood", onPress: () => console.log("alert closed") },
+        { text: "ok", onPress: () => console.log("alert closed") }
+      ]);
+    }
   };
   return (
     <View style={styles.container}>
       <Topic />
       <View style={styles.content}>
-        <AddTodo submitHandler={submitHandler}/>
+        <AddTodo submitHandler={submitHandler} />
         <View style={styles.list}>
           <FlatList
             data={todos}
