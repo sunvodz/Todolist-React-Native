@@ -1,19 +1,30 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, TextInput, StyleSheet, Button } from "react-native";
 
-export default function AddTodo() {
+export default function AddTodo({submitHandler}) {
+  const [text, setText] = useState("");
+  const changeHandler = val => {
+    setText(val);
+  };
+
   return (
-    <View style={styles.topic}>
-      <Text style={styles.title}>Topic</Text>
+    <View>
+      <TextInput
+        style={styles.input}
+        placeholder="new todolist"
+        onChangeText={changeHandler}
+      />
+      <Button onPress={() => submitHandler(text)} title="Add"/>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  topic: {
-    height:20,
-  },
-  title: {
-    textAlign: "center"
+  input: {
+    marginBottom: 10,
+    paddingHorizontal: 8,
+    paddingVertical: 6,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ddd"
   }
 });

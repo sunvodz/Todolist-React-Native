@@ -2,7 +2,7 @@ import React, { Component, useState } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import Topic from "../components/Topic";
 import TodoItem from "../components/TodoItem";
-
+import AddTodo from "../components/AddTodo";
 export default function TodolistScreen() {
   const [todos, setTodos] = useState([
     { text: "Test1", key: "1" },
@@ -11,14 +11,21 @@ export default function TodolistScreen() {
   ]);
 
   const pressHandler = key => {
-    setTodos((prevTodos) => {
+    setTodos(prevTodos => {
       return prevTodos.filter(todo => todo.key != key);
+    });
+  };
+
+  const submitHandler = text => {
+    setTodos(prevTodos => {
+      return [{ text: text, key: Math.random().toString() }, ...prevTodos];
     });
   };
   return (
     <View style={styles.container}>
       <Topic />
       <View style={styles.content}>
+        <AddTodo submitHandler={submitHandler}/>
         <View style={styles.list}>
           <FlatList
             data={todos}
