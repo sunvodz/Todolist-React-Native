@@ -46,6 +46,7 @@ export default function TodolistScreen() {
   );
 }
 
+
 TodolistScreen.navigationOptions = {
   title: "Todolist"
 };
