@@ -3,13 +3,13 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import DeleteTodo from "./DeleteTodo";
 import EditTodo from "./EditTodo";
 
-export default function TodoItem({ item, pressHandler ,editHandler}) {
+export default function TodoItem({ item, pressHandler ,EditHandler}) {
 
   return (
     <TouchableOpacity>
       <View style={styles.item}>
         <Text style={styles.text}>{item.text}</Text>
-        <EditTodo item={item}/>
+        <EditTodo item={item} EditHandler={EditHandler}/>
         <DeleteTodo id={item.key} pressHandler={pressHandler} />
       </View>
     </TouchableOpacity>

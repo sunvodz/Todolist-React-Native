@@ -10,13 +10,14 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
-export default function EditTodo({ item }) {
+export default function EditTodo({ item ,EditHandler}) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const [text, setText] = useState("");
   const changeHandler = val => {
     setText(val);
   };
+
   return (
     <View style={styles.container}>
       <Modal visible={modalOpen} animationType="slide">
@@ -30,7 +31,7 @@ export default function EditTodo({ item }) {
           <View style={styles.content}>
             <Text>Edit task : {item.text}</Text>
             <TextInput style={styles.input} defaultValue={item.text} onChangeText={changeHandler}/>
-            <Button title="Save" />
+            <Button title="Save" onPress={() => EditHandler(item.key,text)}/>
           </View>
         </View>
       </Modal>

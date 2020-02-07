@@ -16,6 +16,11 @@ export default function TodolistScreen() {
     });
   };
 
+  const EditHandler = (key,newSetText) => {
+    console.log("EditHandler:",key,newSetText)
+
+  }
+
   const submitHandler = text => {
     if (text.length > 2) {
       setTodos(prevTodos => {
@@ -37,7 +42,7 @@ export default function TodolistScreen() {
           <FlatList
             data={todos}
             renderItem={({ item }) => (
-              <TodoItem item={item} pressHandler={pressHandler}/>
+              <TodoItem item={item} pressHandler={pressHandler} EditHandler={EditHandler}/>
             )}
           />
         </View>
