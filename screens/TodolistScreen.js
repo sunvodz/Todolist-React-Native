@@ -37,7 +37,7 @@ export default function TodolistScreen() {
           <FlatList
             data={todos}
             renderItem={({ item }) => (
-              <TodoItem item={item} pressHandler={pressHandler} />
+              <TodoItem item={item} pressHandler={pressHandler}/>
             )}
           />
         </View>
